@@ -12,47 +12,62 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarManager carManager = new CarManager(new EfCarDal());
-            BrandManager brandManager = new BrandManager(new EfBrandDal());
-            ColorManager colorManager = new ColorManager(new EfColorDal());
 
+
+           
             
 
         }
 
-        private static void GetByCar(CarManager carManager)
+        private static void CarDetails()
         {
-            foreach (var car in carManager.GetById(10))
+            CarManager carManager = new CarManager(new EfCarDal());
+
+            foreach (var CarD in carManager.GetCarDetails())
             {
-                Console.WriteLine(car.CarName);
+                
+                Console.WriteLine($"ürün Id={CarD.CarId} ürün adi={CarD.CarName} markası={CarD.BrandName} rengi={CarD.ColorName} günlük fiyati={CarD.DailyPrice}");
             }
         }
 
-        private static void ListtoAllColors(ColorManager colorManager)
+        private static void GetById(int id)
         {
+            CarManager carManager = new CarManager(new EfCarDal());
+
+            Console.WriteLine(carManager.GetById(id));
+            
+        }
+
+        private static void ListAllColors()
+        {
+            ColorManager colorManager = new ColorManager(new EfColorDal());
             foreach (var color in colorManager.GetAll())
             {
                 Console.Write("{0} : id   {1} : rengi\n\n", color.ColorId, color.ColorName);
             }
         }
 
-        private static void AddBrand(BrandManager brandManager)
+        private static void AddBrand(Brand brand)
         {
-            brandManager.AddBrand(new Brand { BrandName = "renault" });
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            brandManager.AddBrand(brand);
         }
 
-        private static void UppdateColor(ColorManager colorManager)
+        private static void UppdateColor(Color color)
         {
-            colorManager.UppdateColor(new Color { ColorId = 1, ColorName = "Kırmızı" });
+            ColorManager colorManager = new ColorManager(new EfColorDal());
+            colorManager.UppdateColor(color);
         }
 
-        private static void AddColor(ColorManager colorManager)
+        private static void AddColor(Color color)
         {
-            colorManager.AddColor(new Color { ColorName = "Mavi" });
+            ColorManager colorManager = new ColorManager(new EfColorDal());
+            colorManager.AddColor(color);
         }
 
-        private static void ListToCar(CarManager carManager)
+        private static void ListAllCar()
         {
+            CarManager carManager = new CarManager(new EfCarDal());
             foreach (var car in carManager.GetAll())
             {
                 Console.Write("araba ID'si : {0}\n" +
@@ -66,19 +81,22 @@ namespace ConsoleUI
             }
         }
 
-        private static void UppdateCar(CarManager carManager)
+        private static void UppdateCar(Car car)
         {
-            carManager.UppdateCar(new Car { Id = 12, CarName = "Fiorino", BrandId = 1, ColorId = 0, DailyPrice = 50, ModelYear = "2010", Decription = "1.Model Araba" });
+            CarManager carManager = new CarManager(new EfCarDal());
+            carManager.UppdateCar(car);
         }
 
-        private static void DeleteCar(CarManager carManager)
+        private static void DeleteCar(Car car)
         {
-            carManager.DeleteCar(new Car { Id = 12, CarName = "Doblo", BrandId = 1, ColorId = 0, DailyPrice = 50, ModelYear = "2010", Decription = "1.Model Araba" });
+            CarManager carManager = new CarManager(new EfCarDal());
+            carManager.DeleteCar(car);
         }
 
-        private static void AddCar(CarManager carManager)
+        private static void AddCar(Car car)
         {
-            carManager.AddCar(new Car { CarName = "araba200", BrandId = 10, ColorId = 4, DailyPrice = 400, ModelYear = "2020", Decription = "2.Model Araba" });
+            CarManager carManager = new CarManager(new EfCarDal());
+            carManager.AddCar(car);
         }
     }
 }
