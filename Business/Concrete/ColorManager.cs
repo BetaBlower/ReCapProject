@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Core.Utilities.Results;
 using System.Collections.Generic;
-using System.Text;
+using Business.Constants;
 using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -9,42 +9,47 @@ namespace Business.Concrete
 {
     public class ColorManager : IColorService
     {
+        #region Ctor
         IColorDal _colorDal;
 
         public ColorManager(IColorDal colorDal)
         {
             _colorDal = colorDal;
         }
+        #endregion
 
-        public void AddColor(Color color)
+        public IResult AddColor(Color color)
         {
             _colorDal.Add(color);
+            return new SuccessResult(Messages.başarılı);
         }
 
-        public void DeleteColor(Color color)
+        public IResult DeleteColor(Color color)
         {
             _colorDal.Delete(color);
+            return new SuccessResult(Messages.başarılı);
         }
 
-        public List<Color> GetAll()
+        public IDataResult<List<Color>> GetAll()
         {
-            return _colorDal.GetAll();
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(),Messages.başarılı);
         }
 
-        public List<Color> GetAllByColorId(int id)
+        public IDataResult<List<Color>>  GetAllByColorId(int id)
         {
-            return _colorDal.GetAll(p => p.ColorId == id);
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(c=> c.ColorId == id),Messages.başarılı);
         }
 
        
-        public List<Color> GetById(int id)
+        public IDataResult<Color> GetById(int id)
         {
-            return _colorDal.GetAll(p=> p.ColorId == id);
+            return new SuccessDataResult<Color>(_colorDal.Get(c=> c.ColorId == id),Messages.başarılı);
         }
 
-        public void UppdateColor(Color color)
+        public IResult UppdateColor(Color color)
         {
             _colorDal.Uppdate(color);
+            return new SuccessResult(Messages.başarılı);
         }
     }
 }

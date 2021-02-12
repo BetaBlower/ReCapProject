@@ -19,15 +19,24 @@ namespace ConsoleUI
 
         }
 
+        #region Metotlar
         private static void CarDetails()
         {
             CarManager carManager = new CarManager(new EfCarDal());
 
-            foreach (var CarD in carManager.GetCarDetails())
+            if (carManager.GetCarDetails().Success)
             {
-                
-                Console.WriteLine($"ürün Id={CarD.CarId} ürün adi={CarD.CarName} markası={CarD.BrandName} rengi={CarD.ColorName} günlük fiyati={CarD.DailyPrice}");
+                foreach (var CarD in carManager.GetCarDetails().Data)
+                {
+
+                    Console.WriteLine($"ürün Id={CarD.CarId} ürün adi={CarD.CarName} markası={CarD.BrandName} rengi={CarD.ColorName} günlük fiyati={CarD.DailyPrice}");
+                }
             }
+            else
+            {
+                Console.WriteLine(carManager.GetCarDetails().Message);
+            }
+            
         }
 
         private static void GetById(int id)
@@ -38,12 +47,20 @@ namespace ConsoleUI
             
         }
 
-        private static void ListAllColors()
+        public static void ListAllColors()
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
-            foreach (var color in colorManager.GetAll())
+            var x = colorManager.GetAll();
+            if (x.Success)
             {
-                Console.Write("{0} : id   {1} : rengi\n\n", color.ColorId, color.ColorName);
+                foreach (var color in x.Data)
+                {
+                    Console.Write("{0} : id   {1} : rengi\n\n", color.ColorId, color.ColorName);
+                }
+            }
+            else
+            {
+                Console.WriteLine(x.Message);
             }
         }
 
@@ -68,17 +85,27 @@ namespace ConsoleUI
         private static void ListAllCar()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetAll())
+
+            var result = carManager.GetAll();
+            if (result.Success)
             {
-                Console.Write("araba ID'si : {0}\n" +
-                              "Araba marka Id'si : {1}\n" +
-                              "araba renk Id'si : {2}\n" +
-                              "araba adı : {3}\n" +
-                              "arabanın günlük fiyatı : {4}\n" +
-                              "arabanın model yılı : {5}\n" +
-                              "arabanın açıklaması : {6}\n\n"
-                    , car.Id, car.BrandId, car.ColorId, car.CarName, car.DailyPrice, car.ModelYear, car.Decription);
+                foreach (var car in result.Data)
+                {
+                    Console.Write("araba ID'si : {0}\n" +
+                                  "Araba marka Id'si : {1}\n" +
+                                  "araba renk Id'si : {2}\n" +
+                                  "araba adı : {3}\n" +
+                                  "arabanın günlük fiyatı : {4}\n" +
+                                  "arabanın model yılı : {5}\n" +
+                                  "arabanın açıklaması : {6}\n\n"
+                        , car.Id, car.BrandId, car.ColorId, car.CarName, car.DailyPrice, car.ModelYear, car.Decription);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+           
         }
 
         private static void UppdateCar(Car car)
@@ -98,5 +125,6 @@ namespace ConsoleUI
             CarManager carManager = new CarManager(new EfCarDal());
             carManager.AddCar(car);
         }
+        #endregion
     }
 }
