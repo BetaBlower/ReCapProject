@@ -12,10 +12,15 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            UsersManager usersManager = new UsersManager(new EfUsersDal());
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            RentalsManager rentalsManager = new RentalsManager(new EfRentalsDal());
 
-
+            //rentalsManager.UppdateRental(new Rentals {Id= 2 ,CustomerId = 2, CarId = 5, RentDate = new DateTime(2021, 2, 12),ReturnDate = new DateTime(2021,2,14) });
+            //var result = rentalsManager.AddRental(new Rentals { CustomerId = 2, CarId = 5, RentDate = new DateTime(2021, 2, 15) });
+            rentalsManager.AddRental(new Rentals { CustomerId = 2, CarId = 3, RentDate = new DateTime(2021, 2, 15),ReturnDate= default(DateTime) });
+            //Console.WriteLine(result.Message);
            
-            
 
         }
 

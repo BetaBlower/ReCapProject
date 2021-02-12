@@ -8,15 +8,15 @@ namespace Business.Constants
     {
         #region ErrorMessages
 
-        public static string Karakterhatasi2 = "Minimum 2 karakter olmalıdır";
-        public static string FiyatlandirmaHatasi = "Günlük fiyat 0'dan büyük olmalıdır";
-        public static string ZamanHatasi = "Minimum 2 karakter olmalıdır";
+        public static string CharacterError = "Minimum 2 karakter olmalıdır";
+        public static string PriceError = "Günlük fiyat 0'dan büyük olmalıdır";
+        public static string TimeError = "Zaman hatası";
 
         #endregion
 
         #region SuccessMessages
 
-        public static string başarılı = "İşlemininiz Başarıyla Tamamlanmıştır";
+        public static string Success = "İşlemininiz Başarıyla Tamamlanmıştır";
 
         #endregion
 

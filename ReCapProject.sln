@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Busine
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleUI", "Console\ConsoleUI.csproj", "{9A0C7323-DE5C-493F-8356-DF8D21731BC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReCapDataBase", "ReCapDataBase\ReCapDataBase.csproj", "{EB8262BA-9F21-45F1-98B1-55C2C8D1CDF8}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "C:\Users\LENOVO\source\repos\FinalProject\Core\Core.csproj", "{D15B7786-94F1-410D-9EE6-A213A25A00BE}"
 EndProject
 Global
@@ -37,10 +35,6 @@ Global
 		{9A0C7323-DE5C-493F-8356-DF8D21731BC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A0C7323-DE5C-493F-8356-DF8D21731BC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A0C7323-DE5C-493F-8356-DF8D21731BC7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EB8262BA-9F21-45F1-98B1-55C2C8D1CDF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB8262BA-9F21-45F1-98B1-55C2C8D1CDF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB8262BA-9F21-45F1-98B1-55C2C8D1CDF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB8262BA-9F21-45F1-98B1-55C2C8D1CDF8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D15B7786-94F1-410D-9EE6-A213A25A00BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D15B7786-94F1-410D-9EE6-A213A25A00BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D15B7786-94F1-410D-9EE6-A213A25A00BE}.Release|Any CPU.ActiveCfg = Release|Any CPU

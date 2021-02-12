@@ -20,35 +20,35 @@ namespace Business.Concrete
 
         public IDataResult<List<Brand>> GetAll()
         {
-            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(),Messages.başarılı);
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(),Messages.Success);
         }
 
         public IDataResult<List<Brand>> GetAllByBrandId(int id)
         {
-            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(b => b.BrandId == id),Messages.başarılı);
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(b => b.BrandId == id),Messages.Success);
         }
 
         public IDataResult<List<Brand>> GetById(int id)
         {
-            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(b => b.BrandId == id), Messages.başarılı);
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(b => b.BrandId == id), Messages.Success);
         }
 
         public IResult AddBrand(Brand brand)
         {
             _brandDal.Add(brand);
-            return new SuccessResult(Messages.başarılı);
+            return new SuccessResult(Messages.Success);
         }
 
         public IResult DeleteBrand(Brand brand)
         {
             _brandDal.Delete(brand);
-            return new SuccessResult(Messages.başarılı);
+            return new SuccessResult(Messages.Success);
         }
 
         public IResult UppdateBrand(Brand brand)
         {
             _brandDal.Delete(brand);
-            return new SuccessResult(Messages.başarılı);
+            return new SuccessResult(Messages.Success);
         }
     }
 }
