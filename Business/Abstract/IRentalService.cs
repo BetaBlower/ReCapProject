@@ -14,5 +14,6 @@ namespace Business.Abstract
         IResult AddRental(Rentals rentals);
         IResult DeleteRental(Rentals rentals);
         IResult UppdateRental(Rentals rentals);
+        IResult ControlReturnTime(int id);
     }
 }

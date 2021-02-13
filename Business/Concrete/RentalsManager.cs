@@ -22,14 +22,24 @@ namespace Business.Concrete
 
         public IResult AddRental(Rentals rentals)
         {
-            
-            if (true)
+            if (ControlReturnTime(rentals.CarId).Success) 
             {
                 _rentalDal.Add(rentals);
                 return new SuccessResult(Messages.Success);
             }
             return new ErrorResult(Messages.TimeError);
            
+        }
+
+        public IResult ControlReturnTime(int id)
+        {
+          
+            if (_rentalDal.GetAll(r=> r.CarId== id && r.RentDate > r.ReturnDate ).Count == 0)
+            {
+                return new SuccessResult();
+
+            }
+            return new ErrorResult();
         }
 
         public IResult DeleteRental(Rentals rentals)
@@ -45,13 +55,14 @@ namespace Business.Concrete
 
         public IDataResult<List<Rentals>> GetAllByCustomerId(int id)
         {
-            return new SuccessDataResult<List<Rentals>>(_rentalDal.GetAll(p=> p.Id==id),Messages.Success);
+            return new SuccessDataResult<List<Rentals>>(_rentalDal.GetAll(r=> r.Id==id),Messages.Success);
         }
 
         public IDataResult<Rentals> GetById(int id)
         {
-            return new SuccessDataResult<Rentals>(_rentalDal.Get(p=> p.Id == id),Messages.Success);
+            return new SuccessDataResult<Rentals>(_rentalDal.Get(r=> r.Id == id),Messages.Success);
         }
+
 
         public IResult UppdateRental(Rentals rentals)
         {
