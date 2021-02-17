@@ -16,6 +16,9 @@ namespace ConsoleUI
 
         }
 
+       
+
+        #region Metotlar 
         private static void UppdateRentals(Rentals rentals)
         {
             RentalsManager rentalsManager = new RentalsManager(new EfRentalsDal());
@@ -30,8 +33,6 @@ namespace ConsoleUI
             Console.WriteLine(result.Message);
             
         }
-
-        #region Metotlar
         private static void CarDetails()
         {
             CarManager carManager = new CarManager(new EfCarDal());
