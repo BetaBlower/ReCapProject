@@ -76,6 +76,7 @@ namespace WebAPI.Controllers
             return BadRequest();
         }
 
+
         [HttpGet("getbycolorid")]
         public IActionResult GetByColorId(int id)
         {

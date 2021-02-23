@@ -4,6 +4,8 @@ using Business.Constants;
 using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Core.Aspects.Autofac.Validation;
+using Business.ValiDationRules.FluentValidation;
 
 namespace Business.Concrete
 {
@@ -18,6 +20,7 @@ namespace Business.Concrete
         }
         #endregion
 
+        [ValidationAspect(typeof(ColorValidator))]
         public IResult AddColor(Color color)
         {
             _colorDal.Add(color);

@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValiDationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -20,7 +22,7 @@ namespace Business.Concrete
         }
         #endregion
 
-
+        [ValidationAspect(typeof(CustomerValidator))]
         public IResult AddCustomer(Customers customers)
         {
             _customersDal.Add(customers);

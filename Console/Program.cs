@@ -12,19 +12,23 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-          
 
         }
 
-       
 
-        #region Metotlar 
+        /// <summary>
+        /// Rentals bilgileri girilen rentalsi günceller
+        /// </summary>
+        /// <param name="rentals">rentals nesnesi verilmeli</param>
         private static void UppdateRentals(Rentals rentals)
         {
             RentalsManager rentalsManager = new RentalsManager(new EfRentalsDal());
             var result = rentalsManager.UppdateRental(rentals);
 
         }
+
+        #region Metotlar 
+
 
         private static void AddRentals(Rentals rentals)
         {
