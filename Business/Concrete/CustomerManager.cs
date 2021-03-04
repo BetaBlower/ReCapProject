@@ -23,34 +23,34 @@ namespace Business.Concrete
         #endregion
 
         [ValidationAspect(typeof(CustomerValidator))]
-        public IResult AddCustomer(Customers customers)
+        public IResult AddCustomer(Customer customers)
         {
             _customersDal.Add(customers);
             return new SuccessResult(Messages.Success);
         }
 
-        public IResult DeleteCustomer(Customers customers)
+        public IResult DeleteCustomer(Customer customers)
         {
             _customersDal.Delete(customers);
             return new SuccessResult(Messages.Success);
         }
 
-        public IDataResult<List<Customers>> GetAll()
+        public IDataResult<List<Customer>> GetAll()
         {
-            return new SuccessDataResult<List<Customers>>(_customersDal.GetAll(),Messages.Success);
+            return new SuccessDataResult<List<Customer>>(_customersDal.GetAll(),Messages.Success);
         }
 
-        public IDataResult<List<Customers>> GetAllBy(Customers customers)
+        public IDataResult<List<Customer>> GetAllBy(Customer customers)
         {
-            return new SuccessDataResult<List<Customers>>(_customersDal.GetAll(c=> c == customers),Messages.Success);
+            return new SuccessDataResult<List<Customer>>(_customersDal.GetAll(c=> c == customers),Messages.Success);
         }
 
-        public IDataResult<Customers> GetById(int id)
+        public IDataResult<Customer> GetById(int id)
         {
-            return new SuccessDataResult<Customers>(_customersDal.Get(c=> c.UserId == id),Messages.Success);
+            return new SuccessDataResult<Customer>(_customersDal.Get(c=> c.UserId == id),Messages.Success);
         }
 
-        public IResult UppdateCustomer(Customers customers)
+        public IResult UppdateCustomer(Customer customers)
         {
             _customersDal.Uppdate(customers);
             return new SuccessResult(Messages.Success);

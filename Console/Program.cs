@@ -20,7 +20,7 @@ namespace ConsoleUI
         /// Rentals bilgileri girilen rentalsi günceller
         /// </summary>
         /// <param name="rentals">rentals nesnesi verilmeli</param>
-        private static void UppdateRentals(Rentals rentals)
+        private static void UppdateRentals(Rental rentals)
         {
             RentalsManager rentalsManager = new RentalsManager(new EfRentalsDal());
             var result = rentalsManager.UppdateRental(rentals);
@@ -30,7 +30,7 @@ namespace ConsoleUI
         #region Metotlar 
 
 
-        private static void AddRentals(Rentals rentals)
+        private static void AddRentals(Rental rentals)
         {
             RentalsManager rentalsManager = new RentalsManager(new EfRentalsDal());
             var result = rentalsManager.AddRental(rentals);

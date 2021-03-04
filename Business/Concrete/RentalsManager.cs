@@ -23,7 +23,7 @@ namespace Business.Concrete
         #endregion
 
         [ValidationAspect(typeof(RentalsValidator))]
-        public IResult AddRental(Rentals rentals)
+        public IResult AddRental(Rental rentals)
         {
             if (ControlReturnTime(rentals.CarId).Success) 
             {
@@ -45,29 +45,29 @@ namespace Business.Concrete
             return new ErrorResult();
         }
 
-        public IResult DeleteRental(Rentals rentals)
+        public IResult DeleteRental(Rental rentals)
         {
             _rentalDal.Delete(rentals);
             return new SuccessResult(Messages.Success);
         }
 
-        public IDataResult<List<Rentals>> GetAll()
+        public IDataResult<List<Rental>> GetAll()
         {
-            return new SuccessDataResult<List<Rentals>>(_rentalDal.GetAll(),Messages.Success);
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(),Messages.Success);
         }
 
-        public IDataResult<List<Rentals>> GetAllByCustomerId(int id)
+        public IDataResult<List<Rental>> GetAllByCustomerId(int id)
         {
-            return new SuccessDataResult<List<Rentals>>(_rentalDal.GetAll(r=> r.Id==id),Messages.Success);
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r=> r.Id==id),Messages.Success);
         }
 
-        public IDataResult<Rentals> GetById(int id)
+        public IDataResult<Rental> GetById(int id)
         {
-            return new SuccessDataResult<Rentals>(_rentalDal.Get(r=> r.Id == id),Messages.Success);
+            return new SuccessDataResult<Rental>(_rentalDal.Get(r=> r.Id == id),Messages.Success);
         }
 
 
-        public IResult UppdateRental(Rentals rentals)
+        public IResult UppdateRental(Rental rentals)
         {
             _rentalDal.Uppdate(rentals);
             return new SuccessResult(Messages.Success);

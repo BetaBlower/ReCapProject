@@ -23,29 +23,29 @@ namespace Business.Concrete
         #endregion
 
         [ValidationAspect(typeof(UserValidator))]
-        public IResult AddUser(Users users)
+        public IResult AddUser(User users)
         {
             _UsersDal.Add(users);
             return new SuccessResult(Messages.Success);
         }
 
-        public IResult DeleteUser(Users users)
+        public IResult DeleteUser(User users)
         {
             _UsersDal.Delete(users);
             return new SuccessResult(Messages.Success);
         }
 
-        public IDataResult<List<Users>> GetAll()
+        public IDataResult<List<User>> GetAll()
         {
-            return new SuccessDataResult<List<Users>>(_UsersDal.GetAll(),Messages.Success);
+            return new SuccessDataResult<List<User>>(_UsersDal.GetAll(),Messages.Success);
         }
 
-        public IDataResult<Users> GetById(int id)
+        public IDataResult<User> GetById(int id)
         {
-            return new SuccessDataResult<Users>(_UsersDal.Get(u=> u.Id== id), Messages.Success);
+            return new SuccessDataResult<User>(_UsersDal.Get(u=> u.Id== id), Messages.Success);
         }
 
-        public IResult UppdateUser(Users users)
+        public IResult UppdateUser(User users)
         {
             _UsersDal.Uppdate(users);
             return new SuccessResult(Messages.Success);
