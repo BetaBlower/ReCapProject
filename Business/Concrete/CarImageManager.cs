@@ -1,5 +1,9 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspect.Autofac;
 using Business.Constants;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.FileHelper;
 using Core.Utilities.Results;
@@ -28,6 +32,10 @@ namespace Business.Concrete
         #endregion
 
         #region Business Methods
+
+        [ValidationAspect(typeof(CarImage))]
+        [CacheRemoveAspect("ICarImageService.get")]
+        [SecuredOperation("admin")]
         public IResult AddCarImage(CarImage carImage,IFormFile file)
         {
             try
@@ -51,38 +59,43 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.CarImageCouldNotBeAdded);
             }
         }
-
+        [CacheRemoveAspect("ICarImageService.get")]
         public IResult DeleteCarImage(CarImage carImage)
         {
             FileHelper.Delete(carImage.ImagePath);
             _carImageDal.Delete(carImage);
             return new SuccessResult(Messages.Success);
         }
-
+        [PerformanceAspect(5)]
+        [CacheAspect]
         public IDataResult<List<CarImage>> GetAll()
         {
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll());
         }
-
+        [PerformanceAspect(5)]
+        [CacheAspect]
         public IDataResult<List<CarImage>> GetAllByCarId(int id)
         {
             var result = _carImageDal.GetAll(i => i.CarId == id);
             return new SuccessDataResult<List<CarImage>>(result);
         }
-
+        [PerformanceAspect(5)]
+        [CacheAspect]
         public IDataResult<List<CarImage>> GetAllByDateTime(DateTime Min,DateTime Max)
         {
             var result = _carImageDal.GetAll(i=> i.Date >= Min || i.Date <= Max);
             
             return new SuccessDataResult<List<CarImage>>(result);
         }
-
+        [PerformanceAspect(5)]
+        [CacheAspect]
         public IDataResult<CarImage> GetById(int id)
         {
            
             return new SuccessDataResult<CarImage>(_carImageDal.Get(i => i.Id == id));
         }
-
+        [CacheRemoveAspect("ICarImageService.get")]
+        [ValidationAspect(typeof(CarImage))]
         public IResult UppdateCarImage(CarImage carImage, IFormFile file)
         {
             var oldpath = _carImageDal.Get(i => i.Id == carImage.Id).ImagePath;

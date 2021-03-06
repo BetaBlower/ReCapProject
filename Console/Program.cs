@@ -22,7 +22,7 @@ namespace ConsoleUI
         /// <param name="rentals">rentals nesnesi verilmeli</param>
         private static void UppdateRentals(Rental rentals)
         {
-            RentalsManager rentalsManager = new RentalsManager(new EfRentalsDal());
+            RentalManager rentalsManager = new RentalManager(new EfRentalDal());
             var result = rentalsManager.UppdateRental(rentals);
 
         }
@@ -32,7 +32,7 @@ namespace ConsoleUI
 
         private static void AddRentals(Rental rentals)
         {
-            RentalsManager rentalsManager = new RentalsManager(new EfRentalsDal());
+            RentalManager rentalsManager = new RentalManager(new EfRentalDal());
             var result = rentalsManager.AddRental(rentals);
             Console.WriteLine(result.Message);
             

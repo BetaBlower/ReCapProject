@@ -1,6 +1,9 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspect.Autofac;
 using Business.Constants;
 using Business.ValiDationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -11,18 +14,20 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class RentalsManager : IRentalService
+    public class RentalManager : IRentalService
     {
         #region ctor
-        IRentalsDal _rentalDal;
+        IRentalDal _rentalDal;
 
-        public RentalsManager(IRentalsDal rentalDal)
+        public RentalManager(IRentalDal rentalDal)
         {
             _rentalDal = rentalDal;
         }
         #endregion
 
-        [ValidationAspect(typeof(RentalsValidator))]
+        [ValidationAspect(typeof(RentalValidator))]
+        [CacheRemoveAspect("IRentalService.get")]
+        [SecuredOperation("admin")]
         public IResult AddRental(Rental rentals)
         {
             if (ControlReturnTime(rentals.CarId).Success) 
@@ -33,7 +38,8 @@ namespace Business.Concrete
             return new ErrorResult(Messages.TimeError);
            
         }
-
+        [PerformanceAspect(5)]
+        [CacheAspect]
         public IResult ControlReturnTime(int id)
         {
           
@@ -44,29 +50,35 @@ namespace Business.Concrete
             }
             return new ErrorResult();
         }
-
+        [CacheRemoveAspect("IRentalService.get")]
+        [SecuredOperation("admin")]
         public IResult DeleteRental(Rental rentals)
         {
             _rentalDal.Delete(rentals);
             return new SuccessResult(Messages.Success);
         }
-
+        [PerformanceAspect(5)]
+        [CacheAspect]
         public IDataResult<List<Rental>> GetAll()
         {
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(),Messages.Success);
         }
-
+        [PerformanceAspect(5)]
+        [CacheAspect]
         public IDataResult<List<Rental>> GetAllByCustomerId(int id)
         {
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r=> r.Id==id),Messages.Success);
         }
-
+        [PerformanceAspect(5)]
+        [CacheAspect]
         public IDataResult<Rental> GetById(int id)
         {
             return new SuccessDataResult<Rental>(_rentalDal.Get(r=> r.Id == id),Messages.Success);
         }
 
-
+        [ValidationAspect(typeof(RentalValidator))]
+        [CacheRemoveAspect("IRentalService.get")]
+        [SecuredOperation("admin,rentals.uppdate")]
         public IResult UppdateRental(Rental rentals)
         {
             _rentalDal.Uppdate(rentals);

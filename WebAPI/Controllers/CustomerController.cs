@@ -10,28 +10,31 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController:ControllerBase
+    public class CustomerController:ControllerBase
     {
-        IUserService _userService;
-        public UsersController(IUserService userService)
+        ICustomerService _customerService;
+        public CustomerController(ICustomerService customerService)
         {
-            _userService = userService;
+            _customerService = customerService;
         }
 
         [HttpPost("add")]
-        public IActionResult Add(User users)
+        public IActionResult Add(Customer customers)
         {
-            var result = _userService.AddUser(users);
+            var result = _customerService.AddCustomer(customers);
+
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest();
         }
+
         [HttpPost("delete")]
-        public IActionResult Delete(User users)
+        public IActionResult Delete(Customer customers)
         {
-            var result = _userService.DeleteUser(users);
+            var result = _customerService.DeleteCustomer(customers);
+
             if (result.Success)
             {
                 return Ok(result);
@@ -39,9 +42,10 @@ namespace WebAPI.Controllers
             return BadRequest();
         }
         [HttpPost("uppdate")]
-        public IActionResult Uppdate(User users)
+        public IActionResult Uppdate(Customer customers)
         {
-            var result = _userService.UppdateUser(users);
+            var result = _customerService.UppdateCustomer(customers);
+
             if (result.Success)
             {
                 return Ok(result);
@@ -50,10 +54,11 @@ namespace WebAPI.Controllers
         }
 
 
+
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _userService.GetAll();
+            var result = _customerService.GetAll();
             if (result.Success)
             {
                 return Ok(result.Data);
@@ -63,7 +68,17 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _userService.GetById(id);
+            var result = _customerService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest();
+        }
+        [HttpGet("getallby")]
+        public IActionResult GetAllBy(Customer customers)
+        {
+            var result = _customerService.GetAllBy(customers);
             if (result.Success)
             {
                 return Ok(result.Data);
