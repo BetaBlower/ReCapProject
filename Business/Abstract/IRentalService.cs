@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Results;
 using Entities.Concrete;
+using Entities.Dto;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +15,7 @@ namespace Business.Abstract
         IResult AddRental(Rental rentals);
         IResult DeleteRental(Rental rentals);
         IResult UppdateRental(Rental rentals);
+        IDataResult<List<RentalDetailDto>> GetRentalDetails();
         IResult ControlReturnTime(int id);
     }
 }

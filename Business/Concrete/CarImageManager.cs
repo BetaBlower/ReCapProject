@@ -38,11 +38,11 @@ namespace Business.Concrete
         [SecuredOperation("admin")]
         public IResult AddCarImage(CarImage carImage,IFormFile file)
         {
-            try
-            {
+            //try
+            //{
                 IResult result = BusinessRules.Run(CheckIfImageLimit(carImage.CarId));
 
-                if (result == null)
+                if (result != null)
                     return result;
                 
 
@@ -52,12 +52,12 @@ namespace Business.Concrete
                 _carImageDal.Add(carImage);
                 return new SuccessResult(Messages.CarImageAdded);
 
-            }
-            catch (Exception)
-            {
+            //}
+            //catch (Exception)
+            //{
 
-                return new ErrorResult(Messages.CarImageCouldNotBeAdded);
-            }
+            //    return new ErrorResult(Messages.CarImageCouldNotBeAdded);
+            //}
         }
         [CacheRemoveAspect("ICarImageService.get")]
         public IResult DeleteCarImage(CarImage carImage)
@@ -137,7 +137,7 @@ namespace Business.Concrete
         {
             var imgCounter = _carImageDal.GetAll(p => p.CarId == carId).Count;
 
-            if (imgCounter > 5)
+            if (imgCounter >= 5)
             {
                 return new ErrorResult(Messages.LimitCarImageError);
             }

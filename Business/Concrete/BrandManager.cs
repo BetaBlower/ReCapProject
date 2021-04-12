@@ -13,16 +13,18 @@ using Core.Aspects.Autofac.Performance;
 namespace Business.Concrete
 {
     public class BrandManager:IBrandService
-    {
-        #region Ctor
+    { 
         IBrandDal _brandDal;
+        #region Ctor
         public BrandManager(IBrandDal brandDal)
         {
             _brandDal = brandDal;
         }
         #endregion
+
+        #region Managment
         [CacheAspect]
-        [SecuredOperation("admin,brand.list")]
+        //[SecuredOperation("admin,brand.list")]
         [PerformanceAspect(5)]
         public IDataResult<List<Brand>> GetAll()
         {
@@ -58,5 +60,6 @@ namespace Business.Concrete
             _brandDal.Delete(brand);
             return new SuccessResult(Messages.Success);
         }
+        #endregion
     }
 }

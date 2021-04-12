@@ -10,11 +10,11 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RentalController:ControllerBase
+    public class RentalsController:ControllerBase
     {
         IRentalService _rentalService;
 
-        public RentalController(IRentalService rentalService)
+        public RentalsController(IRentalService rentalService)
         {
             _rentalService = rentalService;
         }
@@ -58,7 +58,7 @@ namespace WebAPI.Controllers
             var result = _rentalService.GetAll();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest();
         }
@@ -68,7 +68,7 @@ namespace WebAPI.Controllers
             var result = _rentalService.GetAllByCustomerId(id);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest();
         }
@@ -78,7 +78,17 @@ namespace WebAPI.Controllers
             var result = _rentalService.GetById(id);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+        [HttpGet("rentaldetails")]
+        public IActionResult CarDetailsDto()
+        {
+            var result = _rentalService.GetRentalDetails();
+            if (result.Success)
+            {
+                return Ok(result);
             }
             return BadRequest();
         }

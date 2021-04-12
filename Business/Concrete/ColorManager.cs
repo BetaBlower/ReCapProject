@@ -38,7 +38,7 @@ namespace Business.Concrete
             _colorDal.Delete(color);
             return new SuccessResult(Messages.Success);
         }
-        [SecuredOperation("admin,color.list")]
+        //[SecuredOperation("admin,color.list")]
         [PerformanceAspect(5)]
         [CacheAspect]
         public IDataResult<List<Color>> GetAll()

@@ -63,7 +63,7 @@ namespace Business.Concrete
         [CacheAspect]
         [PerformanceAspect(5)]
         [SecuredOperation("admin,car.list")]
-        public IDataResult<List<Car>> GetByDailyPrice(double min, double max)
+        public IDataResult<List<Car>> GetByDailyPrice(decimal min, decimal max)
         {
            
 
@@ -76,7 +76,7 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<Car>(_carDal.Get(c=> c.Id==id), Messages.Success);
         }
-        [SecuredOperation("admin,car.list")]
+        //[SecuredOperation("admin,car.list")]
         [PerformanceAspect(5)]
         [CacheAspect]
         public IDataResult<List<CarDetailsDto>> GetCarDetails()

@@ -10,9 +10,10 @@ namespace Entities.Dto
         public int CarId { get; set; }
         public string CarName { get; set; }
         public string BrandName { get; set; }
-        public String ColorName { get; set; }
-        public double DailyPrice { get; set; }
-
+        public string ColorName { get; set; }
+        public decimal DailyPrice { get; set; }
+        public string Decription { get; set; }
+        public string ModelYear { get; set; }
 
     }
 }

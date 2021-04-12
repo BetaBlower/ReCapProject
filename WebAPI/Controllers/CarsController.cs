@@ -61,7 +61,7 @@ namespace WebAPI.Controllers
             var result = _carService.GetAll();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest();
         }
@@ -71,39 +71,38 @@ namespace WebAPI.Controllers
             var result = _carService.GetById(id);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest();
         }
 
-
-        [HttpGet("getbycolorid")]
-        public IActionResult GetByColorId(int id)
+        [HttpGet("getallbycolorid")]
+        public IActionResult GetAllByColorId(int id)
         {
             var result = _carService.GetAllByColorId(id);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest();
         }
-        [HttpGet("getbybrandid")]
-        public IActionResult GetByBrandId(int id)
+        [HttpGet("getallbybrandid")]
+        public IActionResult GetAllByBrandId(int id)
         {
             var result = _carService.GetAllByBrandId(id);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest();
         }
         [HttpGet("getdailyprice")]
-        public IActionResult GetByDailyPrice(Double min,Double max)
+        public IActionResult GetByDailyPrice(decimal min,decimal max)
         {
             var result = _carService.GetByDailyPrice(min,max);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest();
         }
@@ -113,7 +112,7 @@ namespace WebAPI.Controllers
             var result = _carService.GetCarDetails();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest();
         }

@@ -8,6 +8,7 @@ using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Dto;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -57,8 +58,8 @@ namespace Business.Concrete
             _rentalDal.Delete(rentals);
             return new SuccessResult(Messages.Success);
         }
-        [PerformanceAspect(5)]
-        [CacheAspect]
+        //[PerformanceAspect(5)]
+        //[CacheAspect]
         public IDataResult<List<Rental>> GetAll()
         {
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(),Messages.Success);
@@ -74,6 +75,12 @@ namespace Business.Concrete
         public IDataResult<Rental> GetById(int id)
         {
             return new SuccessDataResult<Rental>(_rentalDal.Get(r=> r.Id == id),Messages.Success);
+        }
+        [PerformanceAspect(5)]
+        [CacheAspect]
+        public IDataResult<List<RentalDetailDto>> GetRentalDetails()
+        {
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails(), Messages.Success);
         }
 
         [ValidationAspect(typeof(RentalValidator))]

@@ -61,7 +61,7 @@ namespace WebAPI.Controllers
             var result = _customerService.GetAll();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest();
         }
@@ -71,7 +71,7 @@ namespace WebAPI.Controllers
             var result = _customerService.GetById(id);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest();
         }
@@ -81,7 +81,7 @@ namespace WebAPI.Controllers
             var result = _customerService.GetAllBy(customers);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest();
         }
